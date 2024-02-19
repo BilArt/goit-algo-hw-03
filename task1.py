@@ -15,3 +15,20 @@ def copy_files(source_dir, destination_dir):
                 print(f"Successfully copied {file} to {destination_subdir}")
             except Exception as e:
                 print(f"Error copying {file}: {e}")
+
+def main():
+    parser = argparse.ArgumentParser(description="Copy files recursively and sort them by extension")
+    parser.add_argument("source_dir", type=str, help="Path to the source directory")
+    parser.add_argument("destination_dir", nargs="?", type=str, default="dist", help="Path to the destination directory (default: dist)")
+    args = parser.parse_args()
+
+    source_dir = args.source_dir
+    destination_dir = args.destination_dir
+
+    if not os.path.exists(source_dir):
+        print(f"Source directory {source_dir} does not exist.")
+        return
+    copy_files(source_dir, destination_dir)
+
+if __name__ == "__main__":
+    main()
